@@ -20,7 +20,7 @@ app.get('/test',(req,res)=>{
 
 });
 
-app.get('/report', delay(), function (req,res) {
+app.post('/report', delay(), function (req,res) {
     ReportController.getProfitReportData(req,res);
 });
 app.listen(port, function(){
