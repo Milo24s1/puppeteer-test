@@ -2,10 +2,9 @@ const express =  require('express');
 var bodyParser = require('body-parser');
 const apiRouter = require('./routes/api');
 const ReportController = require('./src/controllers/report');
-const { delay } = require('express-delayed-response').init();
+const { delay,status } = require('express-delayed-response').init();
 const app = express();
 const port = process.env.PORT || 9999;
-const { status } = require('express-delayed-response').init();
 
 
 
@@ -26,7 +25,10 @@ app.post('/report', delay(), function (req,res) {
     ReportController.getProfitReportData(req,res);
 });
 
-app.get('/status/:id', status());
+app.get('/status/:id', function (req,res) {
+
+    res.send('status'+req.params.id);
+});
 app.listen(port, function(){
 
     console.log('Server is running on port:', port);
