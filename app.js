@@ -5,6 +5,8 @@ const ReportController = require('./src/controllers/report');
 const { delay } = require('express-delayed-response').init();
 const app = express();
 const port = process.env.PORT || 9999;
+const { status } = require('express-delayed-response').init();
+
 
 
 app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
@@ -23,6 +25,8 @@ app.get('/test',(req,res)=>{
 app.post('/report', delay(), function (req,res) {
     ReportController.getProfitReportData(req,res);
 });
+
+app.get('/status/:id', status());
 app.listen(port, function(){
 
     console.log('Server is running on port:', port);
