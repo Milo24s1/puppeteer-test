@@ -15,7 +15,7 @@ app.listen(port, function(){
 
 app.get('/',(req,res)=>{
 
-    run()
+    run(req,res);
 });
 
 
