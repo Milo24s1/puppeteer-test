@@ -1,0 +1,61 @@
+<html>
+<head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+<button id="testBtn">Click</button>
+<p id="result"></p>
+
+<script>
+    $(document).ready(function () {
+        $("#testBtn").click(function (e) {
+            e.preventDefault();
+            $.ajax({
+
+                url:'/api/profitReport',
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    'dateRangeFrom': '01-01-2018',
+                    'dateRangeTo': '31-12-2018',
+                    'a': 'Yearly',
+                    'b': '01/01/2018|31/12/2018|1',
+                    'c': '01/08/2018|31/08/2018|1',
+                    'd': '01/07/2018|30/09/2018|1',
+                    'e': '01/01/2018',
+                    'f': '31/12/2018',
+                    'DateRangeType': '2',
+                    'costOfSalesValue': 'Purchases',
+                    'groupByValue': '1',
+                    'compareValue': 'false',
+                    'DisplayDecimalValues': 'false',
+
+                    'GroupByAnalysisCategoryID1': 'false',
+                    'GroupByAnalysisCategoryID2': 'false',
+                    'GroupByAnalysisCategoryID3': 'false',
+                    'budgetValue': 'true',
+                    'budgetIdValue': '25779',
+                    'varianceValue': 'true',
+                    'DisplayReportingGroupDetail': 'false',
+                    'AnalysisCategoryID1': '73083',
+                    'AnalysisCategoryID2': '-999999',
+                    'AnalysisCategoryID3': '-999999',
+                    'AccountsExclude':''
+                },
+                success: function (data) {
+                    $("#result").html(data.csvData);
+                },
+                error : function (xhr, ajaxOptions, thrownError) {
+                    if(xhr.status!=200) {
+
+                        alert('Something went wrong with Saving Company, pleas refresh the page and try again');
+                    }
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
