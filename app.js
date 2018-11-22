@@ -22,7 +22,7 @@ app.get('/',(req,res)=>{
 async function run(req,res) {
     try {
         browser = await puppeteer.launch({
-            // args: [`--proxy-server=${newProxyUrl}`],
+            args: ['--no-sandbox'],
             headless: true,
             ignoreHTTPSErrors: true
         });
