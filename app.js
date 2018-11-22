@@ -22,7 +22,7 @@ app.get('/',(req,res)=>{
 async function run(req,res) {
     try {
         browser = await puppeteer.launch({
-            args: ['--no-sandbox'],
+            args: ['--no-sandbox','--disable-setuid-sandbox'],
             headless: true,
             ignoreHTTPSErrors: true
         });
