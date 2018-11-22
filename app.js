@@ -8,8 +8,8 @@ const port = process.env.PORT || 9999;
 
 
 
-app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
-app.use(bodyParser.json({limit: '50mb'}));
+app.use('/report',bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
+app.use('/report',bodyParser.json({limit: '50mb'}));
 app.set('view engine', 'ejs');
 
 
