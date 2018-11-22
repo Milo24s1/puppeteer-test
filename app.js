@@ -25,10 +25,8 @@ app.post('/report', delay(), function (req,res) {
     ReportController.getProfitReportData(req,res);
 });
 
-app.get('/status/:id', function (req,res) {
+app.use('/status/:id', status());
 
-    res.send('status'+req.params.id);
-});
 app.listen(port, function(){
 
     console.log('Server is running on port:', port);
