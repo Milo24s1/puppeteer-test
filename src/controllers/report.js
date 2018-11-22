@@ -117,23 +117,23 @@ function filteredPostData(body){
 
     let b = body.b;
     //TODO check this is a default one or not
-    queryString += `&b=${encodeURIComponent(b)}`;
+    queryString += `&b=${b}`;
 
     let c = body.c;
     //TODO check this is a default one or not
-    queryString += `&c=${encodeURIComponent(c)}`;
+    queryString += `&c=${c}`;
 
     let d = body.d;
     //TODO check this is a default one or not
-    queryString += `&d=${encodeURIComponent(d)}`;
+    queryString += `&d=${d}`;
 
     let e = body.e;
     //TODO check this is a default one or not
-    queryString += `&e=${encodeURIComponent(e)}`;
+    queryString += `&e=${e}`;
 
     let f = body.f;
     //TODO check this is a default one or not
-    queryString += `&f=${encodeURIComponent(f)}`;
+    queryString += `&f=${f}`;
 
     let DateRangeType = body.DateRangeType;
     //TODO check this is a possible value
