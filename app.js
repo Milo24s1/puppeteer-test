@@ -23,7 +23,7 @@ async function run(req,res) {
     try {
         browser = await puppeteer.launch({
             // args: [`--proxy-server=${newProxyUrl}`],
-            headless: false,
+            headless: true,
             ignoreHTTPSErrors: true
         });
 
