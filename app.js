@@ -20,7 +20,9 @@ app.get('/test',(req,res)=>{
 
 });
 
-app.get('/report', delay(), ReportController.getProfitReportData(req,res));
+app.get('/report', delay(), function (req,res) {
+    ReportController.getProfitReportData(req,res);
+});
 app.listen(port, function(){
 
     console.log('Server is running on port:', port);
