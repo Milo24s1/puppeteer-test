@@ -40,7 +40,6 @@ ReportController.getProfitReportData = async function(req,res){
             }, filteredData);
 
             //await page.click('#ctl00_cphFullWidthDocumentContainerBelowSearch_btnViewReport');
-            await page.waitFor(2000);
             await page.waitForNavigation();
             await page.waitForSelector('.jqtree-tree', { timeout: 30000 });
             console.log('going to click download button');
@@ -84,7 +83,6 @@ ReportController.getProfitReportData = async function(req,res){
 
             },'down');
 
-            console.log(csvData);
             await browser.close();
             res.status(200).send({'csvData':csvData});
 
