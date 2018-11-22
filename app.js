@@ -1,5 +1,6 @@
 const express =  require('express');
 var bodyParser = require('body-parser');
+const puppeteer = require("puppeteer");
 
 const app = express();
 
@@ -13,5 +14,31 @@ app.listen(port, function(){
 });
 
 app.get('/',(req,res)=>{
-    res.send('home');
+
+    run()
 });
+
+
+async function run(req,res) {
+    try {
+        browser = await puppeteer.launch({
+            // args: [`--proxy-server=${newProxyUrl}`],
+            headless: false,
+            ignoreHTTPSErrors: true
+        });
+
+        const page = await browser.newPage();
+        await page.goto('http://m.facebook.com/', { ignoreHTTPSErrors: true, timeout: 60000 });
+        await page.waitFor(2000);
+        const title=await page.evaluate((a) => {
+            return document.querySelector('title').text;
+        },'test');
+        browser.close();
+        res.status(200).send(title);
+    }
+    catch (e) {
+        console.log('catch');
+        console.log(e);
+        res.status(500).send(e);
+    }
+}
