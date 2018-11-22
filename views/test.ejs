@@ -45,7 +45,12 @@
                     'AccountsExclude':''
                 },
                 success: function (data) {
-                    $("#result").html(data.csvData);
+                    if(data.csvData != undefined){
+                        $("#result").html(data.csvData);
+                    }
+                    else {
+                        setTimeout(lazyLoad(id),5000);
+                    }
                 },
                 error : function (xhr, ajaxOptions, thrownError) {
                     if(xhr.status!=200) {
@@ -55,6 +60,32 @@
                 }
             });
         });
+
+        function lazyLoad(id) {
+            $.ajax({
+
+                url:'/status/'+id,
+                method: 'GET',
+                dataType: 'json',
+
+                success: function (data) {
+
+                    if(data.csvData != undefined){
+                        $("#result").html(data.csvData);
+                    }
+                    else {
+                        setTimeout(lazyLoad(id),5000);
+                    }
+
+                },
+                error : function (xhr, ajaxOptions, thrownError) {
+                    if(xhr.status!=200) {
+
+                        alert('Something went wrong with Saving Company, pleas refresh the page and try again');
+                    }
+                }
+            });
+        }
     });
 </script>
 </body>
