@@ -45,11 +45,11 @@
                     'AccountsExclude':''
                 },
                 success: function (data) {
-                    if(data.csvData != undefined){
-                        $("#result").html(data.csvData);
+                    if(data.id != undefined){
+                        setTimeout(lazyLoad(data.id),5000);
                     }
                     else {
-                        setTimeout(lazyLoad(data.id),5000);
+                        $("#result").html(data.csvData);
                     }
                 },
                 error : function (xhr, ajaxOptions, thrownError) {
@@ -70,11 +70,12 @@
 
                 success: function (data) {
 
-                    if(data.csvData != undefined){
-                        $("#result").html(data.csvData);
+                    if(data.id != undefined){
+                        setTimeout(lazyLoad(id),5000);
+
                     }
                     else {
-                        setTimeout(lazyLoad(id),9000);
+                        $("#result").html(data.csvData);
                     }
 
                 },

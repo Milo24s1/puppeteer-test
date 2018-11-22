@@ -84,7 +84,7 @@ ReportController.getProfitReportData = async function(req,res){
             },'down');
 
             await browser.close();
-            res.status(200).send({'csvData':csvData});
+            res.status(200).send(csvData);
 
 
 
