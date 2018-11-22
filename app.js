@@ -1,7 +1,8 @@
 const express =  require('express');
 var bodyParser = require('body-parser');
 const apiRouter = require('./routes/api');
-
+const ReportController = require('./src/controllers/report');
+const { delay } = require('express-delayed-response').init();
 const app = express();
 const port = process.env.PORT || 9999;
 
@@ -18,6 +19,8 @@ app.get('/test',(req,res)=>{
     res.render('test');
 
 });
+
+app.get('/report', delay(), ReportController.getProfitReportData(req,res));
 app.listen(port, function(){
 
     console.log('Server is running on port:', port);
